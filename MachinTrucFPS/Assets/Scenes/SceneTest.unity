@@ -332,7 +332,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: bcee1fd3c90f49c4db43078482d70259, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 57e9c0e65c6c69d47b447fa30d362404, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.156
   m_Pitch: 1
@@ -1339,7 +1339,7 @@ MonoBehaviour:
   bulletSpeed: 150
   minScreenshakeFOV: 50
   screenshakeFOVModifier: 5
-  beatTime: 1.41
+  beatTime: 1.5333333
   allowedError: 0.3
   currentTime: 0
   canShoot: 0
