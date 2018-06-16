@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
     public Transform player;
     public GameObject bloodFX;
+    public GameObject deadFX;
 
     public int life;
 
@@ -32,6 +33,8 @@ public class Enemy : MonoBehaviour
         life -= damages;
         if(life <= 0)
         {
+            GameObject _deadFX = Instantiate(deadFX);
+            _deadFX.transform.position = transform.position;
             Destroy(this.gameObject);
         }
     }

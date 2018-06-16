@@ -27,17 +27,20 @@ public class Shoot : MonoBehaviour
 
     float beatCalculator;
     float temp;
+    float songPosition;
 
     private AudioSource currentClip;
     private Transform weapon;
     private Enemy enemy;
+    private MusicSelector musicSelector;
 
     void Start ()
     {
+        musicSelector = GetComponent<MusicSelector>();
         weapon = transform.GetChild(0).GetChild(0).GetChild(0);
         
         baseFOV = Camera.main.fieldOfView;
-	}
+    }
 	
 	void FixedUpdate ()
     {
@@ -62,7 +65,6 @@ public class Shoot : MonoBehaviour
                 enemy = hit.collider.gameObject.GetComponent<Enemy>();
                 enemy.PlayBlood(hit.point);
                 enemy.ApplyDamages(1);
-                Destroy(this.gameObject);
             }
         }
 
@@ -82,7 +84,7 @@ public class Shoot : MonoBehaviour
         }
     }
 
-    void ShootNBeat()
+    /*void ShootNBeat()
     {
         currentTime = Time.time;
         beatCalculator = currentTime / beatTime;
@@ -95,6 +97,30 @@ public class Shoot : MonoBehaviour
                 ShootBullet();
             }
             feedabckBeat.SetActive(true);
+        }
+        else
+        {
+            feedabckBeat.SetActive(false);
+        }
+    }*/
+
+    void ShootNBeat()
+    {
+        beatCalculator = 60f / musicSelector.bpm * musicSelector.bpmDivider;
+        songPosition = (float)(AudioSettings.dspTime - musicSelector.dspTime); // Commence à 0 pile pour augmenter de 1 en 1
+        float songPosInBeats = songPosition / beatCalculator;
+        temp = Mathf.Floor(songPosInBeats);
+        //beatCalculator -= temp;
+        if (songPosInBeats <= temp + allowedError)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                ShootBullet();
+            }
+            if (songPosInBeats <= temp + 0.1)
+            {
+                feedabckBeat.SetActive(true);
+            }
         }
         else
         {

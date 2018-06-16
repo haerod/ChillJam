@@ -2,18 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class Musics
+{
+    public AudioClip song;
+    public int bpm;
+    public int bpmDivider;
+}
+
 public class MusicSelector : MonoBehaviour {
-	public AudioClip[] musics;
-	public AudioClip[] beats;
+    public Musics[] musics;
 	[Space]
 	[SerializeField] private int selected;
-	private AudioSource musicSource;
-	private AudioSource beatSource;
+    private AudioSource musicSource;
 
-	void Start()
+    public float dspTime;
+    public float bpm;
+    public float bpmDivider;
+
+    void Start()
 	{
-		beatSource = GetComponent<AudioSource>();
 		musicSource = transform.GetChild(1).GetComponent<AudioSource>();
+        ChangeMusic();
 	}
 
 	void Update()
@@ -27,37 +37,43 @@ public class MusicSelector : MonoBehaviour {
 		switch(input)
 		{
 			case "&":
-			selected = 0;
-			ChangeMusic(selected);
-			break;
+			    selected = 0;
+			    ChangeMusic();
+			    break;
 			case "é":
-			selected = 1;
-			ChangeMusic(selected);
-			break;
+			    selected = 1;
+			    ChangeMusic();
+			    break;
 			case "\"":
-			selected = 2;
-			ChangeMusic(selected);
-			break;
-		}
+			    selected = 2;
+			    ChangeMusic();
+			    break;
+            case "'":
+                selected = 3;
+                ChangeMusic();
+                break;
+        }
 		if (Input.GetAxis("Mouse ScrollWheel") > 0f ) // forward
 			{
 				selected++;
-				if(selected > 2) selected = 0;  
-				ChangeMusic(selected);
+				if(selected > 3) selected = 0;  
+				ChangeMusic();
 			}
 		else if (Input.GetAxis("Mouse ScrollWheel") < 0f ) // backwards
 		{
 			selected--;
-			if(selected < 0) selected = 2;
-			ChangeMusic(selected);
+			if(selected < 0) selected = 3;
+			ChangeMusic();
 		}
 		
 	}
 
-	void ChangeMusic(int _selected)
+	void ChangeMusic()
 	{
-		musicSource.clip = musics[_selected];
-		beatSource.clip = musics[_selected];
-		musicSource.Play();
+		musicSource.clip = musics[selected].song;
+        bpm = musics[selected].bpm;
+        bpmDivider = musics[selected].bpmDivider;
+        dspTime = (float)AudioSettings.dspTime;
+        musicSource.Play();
 	}
 }
