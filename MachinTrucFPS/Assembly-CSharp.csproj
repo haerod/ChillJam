@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\MusicSelector.cs" />
      <Compile Include="Assets\Scripts\MuzzleFalsh.cs" />
+     <Compile Include="Assets\Scripts\ParticleAutoDestroy.cs" />
      <Compile Include="Assets\Scripts\Shoot.cs" />
      <Compile Include="Assets\Vrac\Standard Assets\Characters\FirstPersonCharacter\Scripts\FirstPersonController.cs" />
      <Compile Include="Assets\Vrac\Standard Assets\Characters\FirstPersonCharacter\Scripts\HeadBob.cs" />
