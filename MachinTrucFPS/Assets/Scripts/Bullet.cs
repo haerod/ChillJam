@@ -24,6 +24,7 @@ public class Bullet : MonoBehaviour
         {
             enemy = col.gameObject.GetComponent<Enemy>();
             enemy.PlayBlood(col.contacts[0]);
+            enemy.ApplyDamages(1);
             Destroy(this.gameObject);
         }
     }

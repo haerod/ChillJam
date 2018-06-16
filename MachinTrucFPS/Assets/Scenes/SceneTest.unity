@@ -334,7 +334,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bcee1fd3c90f49c4db43078482d70259, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.156
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -976,7 +976,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 1.67
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1001,6 +1001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2111550631}
   bloodFX: {fileID: 1811380836843480, guid: 127121fbb697f394e91eadf70592e678, type: 2}
+  life: 2
 --- !u!1 &1888508704
 GameObject:
   m_ObjectHideFlags: 0

@@ -39,6 +39,7 @@ public class Shoot : MonoBehaviour
         {
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, baseFOV, 0.6f);
         }
+
         ShootNBeat();
     }
 
