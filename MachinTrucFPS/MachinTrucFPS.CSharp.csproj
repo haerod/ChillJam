@@ -222,6 +222,7 @@
     <Compile Include="Assets\Scripts\Beat.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\MusicSelector.cs" />
     <Compile Include="Assets\Scripts\MuzzleFalsh.cs" />
     <Compile Include="Assets\Scripts\ParticleAutoDestroy.cs" />
     <Compile Include="Assets\Scripts\Shoot.cs" />
