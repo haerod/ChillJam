@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * speed, ForceMode.Impulse);
     }
 
-    void OnCollisionEnter(Collision col)
+    /*void OnCollisionEnter(Collision col)
     {
         if(col.transform.tag == "Enemy")
         {
@@ -27,5 +27,5 @@ public class Bullet : MonoBehaviour
             enemy.ApplyDamages(1);
             Destroy(this.gameObject);
         }
-    }
+    }*/
 }

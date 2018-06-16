@@ -22,9 +22,9 @@ public class Enemy : MonoBehaviour
         agent.SetDestination(player.position);
 	}
 
-    public void PlayBlood(ContactPoint contact)
+    public void PlayBlood(Vector3 hit)
     {
-        Instantiate(bloodFX, contact.point, transform.rotation);
+        Instantiate(bloodFX, hit, transform.rotation);
     }
 
     public void ApplyDamages(int damages)

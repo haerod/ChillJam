@@ -28,8 +28,14 @@ public class Shoot : MonoBehaviour
     float beatCalculator;
     float temp;
 
+    private AudioSource currentClip;
+    private Transform weapon;
+    private Enemy enemy;
+
     void Start ()
     {
+        weapon = transform.GetChild(0).GetChild(0).GetChild(0);
+        
         baseFOV = Camera.main.fieldOfView;
 	}
 	
@@ -45,8 +51,20 @@ public class Shoot : MonoBehaviour
 
     void ShootBullet()
     {
-        newBullet = Instantiate(bullet, muzzle.position, muzzle.rotation).GetComponent<Bullet>();
-        newBullet.speed = bulletSpeed;
+        
+        Ray ray = new Ray(weapon.position, weapon.up); 
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+            Debug.DrawLine(ray.origin, hit.point);
+            if(hit.collider.CompareTag("Enemy")) {
+                enemy = hit.collider.gameObject.GetComponent<Enemy>();
+                enemy.PlayBlood(hit.point);
+                enemy.ApplyDamages(1);
+                Destroy(this.gameObject);
+            }
+        }
 
         GameObject instaShootSFX = Instantiate(shootSFX, transform.position, Quaternion.identity);
         Destroy(instaShootSFX, 1.5f);
