@@ -6,7 +6,7 @@ public class Shoot : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform muzzle;
-    [SerializeField] private MuzzleFalsh muzzleFalsh;
+    [SerializeField] private MuzzleFalsh muzzleFlash;
     [SerializeField] private GameObject shootSFX;
     [SerializeField] private GameObject feedabckBeat;
 
@@ -50,8 +50,8 @@ public class Shoot : MonoBehaviour
         GameObject instaShootSFX = Instantiate(shootSFX, transform.position, Quaternion.identity);
         Destroy(instaShootSFX, 1.5f);
 
-        muzzleFalsh.gameObject.SetActive(true);
-        muzzleFalsh.StartEnd();
+        muzzleFlash.gameObject.SetActive(true);
+        muzzleFlash.StartEnd();
 
         if(Camera.main.fieldOfView - screenshakeFOVModifier >= minScreenshakeFOV)
         {

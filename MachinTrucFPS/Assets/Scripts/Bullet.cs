@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [HideInInspector] public float speed;
+    private Enemy enemy;
 
 	void Start ()
     {
@@ -15,5 +16,15 @@ public class Bullet : MonoBehaviour
     void Update ()
     {
         gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * speed, ForceMode.Impulse);
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if(col.transform.tag == "Enemy")
+        {
+            enemy = col.gameObject.GetComponent<Enemy>();
+            enemy.PlayBlood(col.contacts[0]);
+            Destroy(this.gameObject);
+        }
     }
 }
