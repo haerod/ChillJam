@@ -6,8 +6,9 @@ public class Shoot : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform muzzle;
-    [SerializeField] private MuzzleFalsh muzzleFalsh;
+    [SerializeField] private MuzzleFalsh muzzleFlash;
     [SerializeField] private GameObject shootSFX;
+    [SerializeField] private GameObject feedabckBeat;
 
     [Header("Stats")]
     [SerializeField] private float bulletSpeed;
@@ -17,22 +18,30 @@ public class Shoot : MonoBehaviour
     private Bullet newBullet;
     private float baseFOV;
 
+    [Header("Beat")]
+
+    [SerializeField] private float beatTime;
+    [SerializeField] private float allowedError;
+    public float currentTime;
+    public bool canShoot;
+
+    float beatCalculator;
+    float temp;
+
     void Start ()
     {
         baseFOV = Camera.main.fieldOfView;
 	}
 	
-	void Update ()
+	void FixedUpdate ()
     {
-	    if(Input.GetMouseButtonDown(0))
-        {
-            ShootBullet();
-        }
         if(Camera.main.fieldOfView != baseFOV)
         {
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, baseFOV, 0.6f);
         }
-	}
+
+        ShootNBeat();
+    }
 
     void ShootBullet()
     {
@@ -42,8 +51,8 @@ public class Shoot : MonoBehaviour
         GameObject instaShootSFX = Instantiate(shootSFX, transform.position, Quaternion.identity);
         Destroy(instaShootSFX, 1.5f);
 
-        muzzleFalsh.gameObject.SetActive(true);
-        muzzleFalsh.StartEnd();
+        muzzleFlash.gameObject.SetActive(true);
+        muzzleFlash.StartEnd();
 
         if(Camera.main.fieldOfView - screenshakeFOVModifier >= minScreenshakeFOV)
         {
@@ -52,6 +61,26 @@ public class Shoot : MonoBehaviour
         else
         {
             Camera.main.fieldOfView = screenshakeFOVModifier;
+        }
+    }
+
+    void ShootNBeat()
+    {
+        currentTime = Time.time;
+        beatCalculator = currentTime / beatTime;
+        temp = Mathf.Floor(beatCalculator);
+        beatCalculator -= temp;
+        if (beatCalculator <= allowedError || (beatCalculator-allowedError >= allowedError * -1 && beatCalculator <= 0))
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                ShootBullet();
+            }
+            feedabckBeat.SetActive(true);
+        }
+        else
+        {
+            feedabckBeat.SetActive(false);
         }
     }
 }
