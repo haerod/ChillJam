@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public Transform player;
     public GameObject bloodFX;
     public GameObject deadFX;
+    public GameObject note;
 
     public int life;
 
@@ -15,6 +16,7 @@ public class Enemy : MonoBehaviour
 	
     void Awake()
     {
+        player = FindObjectOfType<Shoot>().transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -35,6 +37,8 @@ public class Enemy : MonoBehaviour
         {
             GameObject _deadFX = Instantiate(deadFX);
             _deadFX.transform.position = transform.position;
+            GameObject _note = Instantiate(deadFX);
+            _note.transform.position = transform.position;
             Destroy(this.gameObject);
         }
     }

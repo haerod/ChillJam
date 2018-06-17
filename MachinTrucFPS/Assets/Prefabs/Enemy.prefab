@@ -290,6 +290,7 @@ MonoBehaviour:
   player: {fileID: 0}
   bloodFX: {fileID: 1811380836843480, guid: 127121fbb697f394e91eadf70592e678, type: 2}
   deadFX: {fileID: 1146647805345690, guid: 35eb4232a12046a409a187bd8e1aabd3, type: 2}
+  note: {fileID: 1673362067686302, guid: a2af4f7e5e6ed8c47bfeefdb46f38990, type: 2}
   life: 2
 --- !u!135 &135267006831144458
 SphereCollider:

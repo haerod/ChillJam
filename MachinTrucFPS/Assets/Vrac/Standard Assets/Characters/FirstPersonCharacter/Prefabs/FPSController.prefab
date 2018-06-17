@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8200000}
   m_Layer: 0
   m_Name: FPSController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -938,7 +938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f5e7ac4842b344898fbe2b9bfc3509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1821144820499260, guid: 0dca0646fde2853409f13aa7387d63ca, type: 2}
+  bullet: {fileID: 1343448007245852, guid: d5db8f7b26109164e90becc19bf0dbfb, type: 2}
   muzzle: {fileID: 4801740865393726}
   muzzleFlash: {fileID: 114050413415376494}
   shootSFX: {fileID: 1678391038429700, guid: c4a38310d835fd94d98beca2dda075bc, type: 2}
@@ -947,7 +947,7 @@ MonoBehaviour:
   minScreenshakeFOV: 50
   screenshakeFOVModifier: 5
   beatTime: 100
-  allowedError: 0.4
+  allowedError: 0.3
   currentTime: 0
   canShoot: 0
 --- !u!114 &114289966758606682

@@ -68,6 +68,8 @@ public class Shoot : MonoBehaviour
             }
         }
 
+        GameObject instaShoot = Instantiate(bullet, weapon.position, weapon.rotation);
+
         GameObject instaShootSFX = Instantiate(shootSFX, transform.position, Quaternion.identity);
         Destroy(instaShootSFX, 1.5f);
 
@@ -111,8 +113,10 @@ public class Shoot : MonoBehaviour
         float songPosInBeats = songPosition / beatCalculator;
         temp = Mathf.Floor(songPosInBeats);
         //beatCalculator -= temp;
-        if (songPosInBeats <= temp + allowedError)
+        if (songPosInBeats >= temp - allowedError && songPosInBeats <= temp + allowedError)
         {
+            Debug.Log(songPosInBeats);
+            Debug.Log(temp);
             if (Input.GetMouseButtonDown(0))
             {
                 ShootBullet();
